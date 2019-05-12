@@ -1,3 +1,10 @@
+## 12 May 2019
+
+### [1.1.0](https://github.com/idiocc/koa/compare/v1.0.2...v1.1.0)
+
+- [deps] Install `mime-db` as a dependency.
+- [org] Publish `@goa/goa` with modules, types and tests, and compile the source code in the `@goa/koa` package using _Depack_.
+
 ## 11 May 2019
 
 ### [1.0.2](https://github.com/idiocc/goa/compare/v1.0.1...v1.0.2)

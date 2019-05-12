@@ -10,8 +10,8 @@ goa.use(async (ctx, next) => {
 })
 goa.listen(3000, async function() {
   const url = `http://localhost:3000`
-  console.log(url)
-  const res = await aqt(`http://localhost:3000`)
+  console.log(url, '\n')
+  const res = await aqt(url)
   console.log(res)
   this.close()
 })

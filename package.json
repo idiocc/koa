@@ -1,19 +1,14 @@
 {
   "name": "@goa/koa",
-  "version": "0.0.0-pre",
+  "version": "1.0.2",
   "description": "The Koa2 Fork Optimized With Google Closure Compiler That Has Just 1 Dependency (mime-db).",
-  "main": "build/index.js",
-  "module": "src/index.js",
+  "main": "depack/index.js",
   "scripts": {
     "t": "zoroaster -a",
     "test": "ALAMODE_ENV=test-build yarn t test.js test/spec",
-    "spec": "yarn t test/spec",
-    "mask": "yarn t test/mask",
     "depack": "GOOGLE_CLOSURE_COMPILER=/Volumes/backup/closure-compiler/target/closure-compiler-1.0-SNAPSHOT.jar depack-dev src/depack -o depack -l -a -p -S",
     "doc": "NODE_DEBUG=doc doc -o README.md",
-    "b": "alamode src -o build -s",
-    "d": "yarn-s d1 externs",
-    "d1": "typal types/index.js src -c -t types/index.xml",
+    "d": "cp -R node_modules/@goa/goa/types .",
     "externs": "typal externs.js",
     "build": "yarn-s d b doc",
     "e": "alanode"
@@ -31,7 +26,13 @@
   },
   "keywords": [
     "koa",
-    "goa"
+    "goa",
+    "idio",
+    "gcc",
+    "google closure compiler",
+    "web",
+    "server",
+    "http"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
@@ -40,6 +41,7 @@
   },
   "homepage": "https://github.com/idiocc/koa#readme",
   "devDependencies": {
+    "@contexts/http": "^1.2.6",
     "@goa/goa": "^1.1.1",
     "alamode": "^2.1.2",
     "documentary": "^1.27.2",
@@ -51,7 +53,6 @@
     "node": ">=7.7"
   },
   "dependencies": {
-    "@contexts/http": "^1.2.6",
     "mime-db": "^1.40.0"
   }
 }

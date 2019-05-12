@@ -3,23 +3,17 @@
 The package is available by importing its default function:
 
 ```js
-import koa from '@goa/koa'
+import Goa from '@goa/koa'
 ```
 
 %~%
 
-```## koa
-[
-  ["arg1", "string"],
-  ["arg2?", "boolean"]
-]
+```## constructor => Goa
 ```
 
-Call this function to get the result you want.
+Creates a new app.
 
-%TYPEDEF types/index.xml%
-
-%EXAMPLE: example, ../src => @goa/koa%
-%FORK example%
+%EXAMPLE: example, ../ => @goa/koa%
+%FORK-js example%
 
 %~%

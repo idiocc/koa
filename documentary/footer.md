@@ -4,8 +4,10 @@
 
 ## Copyright
 
-(c) [Idio][1] 2019
+The Koa web server by its [authors](https://github.com/koajs/koa).
 
-[1]: https://idio.cc
+---
+
+<idio-footer />
 
 %~ -1%

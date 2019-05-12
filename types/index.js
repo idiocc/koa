@@ -1,9 +1,9 @@
-/* typal types/index.xml closure noSuppress */
+export {}
+
 /**
- * @typedef {_@goa/koa.Config} Config Options for the program.
- */
-/**
- * @typedef {Object} _@goa/koa.Config Options for the program.
- * @prop {boolean} [shouldRun=true] A boolean option. Default `true`.
- * @prop {string} text A text to return.
+ * @typedef {import('./typedefs/application').Application} Application
+ * @typedef {import('./typedefs/application').Middleware} Middleware
+ * @typedef {import('./typedefs/context').Context} Context
+ * @typedef {import('./vendor/cookies').Cookies} Cookies
+ * @typedef {import('./vendor/cookies').Keygrip} Keygrip
  */

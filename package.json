@@ -8,16 +8,11 @@
     "test": "ALAMODE_ENV=test-build yarn t test.js test/spec",
     "depack": "GOOGLE_CLOSURE_COMPILER=/Volumes/backup/closure-compiler/target/closure-compiler-1.0-SNAPSHOT.jar depack-dev src/depack -o depack -l -a -p -S",
     "doc": "NODE_DEBUG=doc doc -o README.md",
-    "d": "cp -R node_modules/@goa/goa/types .",
-    "externs": "typal externs.js",
     "build": "yarn-s d b doc",
     "e": "alanode"
   },
   "files": [
-    "depack",
-    "types/index.js",
-    "types/typedefs",
-    "types/vendor"
+    "depack"
   ],
   "externs": "types/externs.js",
   "repository": {
@@ -53,6 +48,7 @@
     "node": ">=7.7"
   },
   "dependencies": {
+    "@typedefs/goa": "^0.0.1",
     "mime-db": "^1.40.0"
   }
 }

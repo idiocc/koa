@@ -38,6 +38,7 @@
   "devDependencies": {
     "@contexts/http": "^1.2.6",
     "@goa/goa": "^1.2.0",
+    "@typedefs/goa": "^0.0.2",
     "@wrote/wrote": "^1.2.3",
     "alamode": "^2.3.4",
     "documentary": "^1.27.3",
@@ -51,7 +52,6 @@
     "node": ">=7.7"
   },
   "dependencies": {
-    "@typedefs/goa": "^0.0.2",
     "mime-db": "^1.40.0"
   }
 }

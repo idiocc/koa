@@ -1,3 +1,9 @@
+## 21 June 2019
+
+### [1.1.2](https://github.com/idiocc/koa/compare/v1.1.1...v1.1.2)
+
+- [deps] Use `typework` for typedefs management.
+
 ## 20 June 2019
 
 ### [1.1.1](https://github.com/idiocc/koa/compare/v1.1.0...v1.1.1)

@@ -12,7 +12,8 @@
     "e": "alanode"
   },
   "files": [
-    "depack"
+    "depack",
+    "types"
   ],
   "externs": "types/externs.js",
   "repository": {

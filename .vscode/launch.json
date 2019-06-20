@@ -34,19 +34,6 @@
       "skipFiles": [
         "<node_internals>/**/*.js"
       ]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Typework",
-      "program": "${workspaceFolder}/node_modules/.bin/alanode",
-      "console": "integratedTerminal",
-      "args": [
-        "script"
-      ],
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ]
     }
   ]
 }

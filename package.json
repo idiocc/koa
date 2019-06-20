@@ -39,12 +39,10 @@
     "@contexts/http": "^1.2.6",
     "@goa/goa": "^1.2.0",
     "@typedefs/goa": "^0.0.2",
-    "@wrote/wrote": "^1.2.3",
     "alamode": "^2.3.4",
     "documentary": "^1.27.3",
     "eslint-config-artdeco": "1.0.1",
-    "resolve-dependency": "^1.0.3",
-    "restream": "^3.7.1",
+    "typework": "^0.1.0",
     "yarn-s": "1.1.0",
     "zoroaster": "^4.1.1-alpha"
   },

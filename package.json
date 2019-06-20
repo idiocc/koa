@@ -43,8 +43,8 @@
   "devDependencies": {
     "@contexts/http": "^1.2.6",
     "@goa/goa": "^1.1.1",
-    "alamode": "^2.2.0",
-    "documentary": "^1.27.2",
+    "alamode": "^2.3.4",
+    "documentary": "^1.27.3",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.1.0",
     "zoroaster": "^4.1.1-alpha"

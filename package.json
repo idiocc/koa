@@ -6,7 +6,7 @@
   "scripts": {
     "t": "zoroaster -a",
     "test": "ALAMODE_ENV=test-build yarn t test.js test/spec",
-    "depack": "GOOGLE_CLOSURE_COMPILER=/Volumes/backup/closure-compiler/target/closure-compiler-1.0-SNAPSHOT.jar depack-dev src/depack -o depack -l -a -p -S",
+    "depack": "depack-dev src/depack -o depack -l -a -p -S",
     "doc": "NODE_DEBUG=doc doc -o README.md",
     "build": "yarn-s d b doc",
     "e": "alanode"

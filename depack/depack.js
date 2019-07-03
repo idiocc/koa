@@ -436,9 +436,8 @@ function Ea() {
   });
 }
 ;/*
- content-type
- Copyright(c) 2015 Douglas Christopher Wilson
- MIT Licensed
+ MIT content-type
+ 2015 Douglas Christopher Wilson
 */
 const O = /; *([!#$%&'*+.^_`|~0-9A-Za-z-]+) *= *("(?:[\u000b\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u000b\u0020-\u00ff])*"|[!#$%&'*+.^_`|~0-9A-Za-z-]+) */g, Fa = /\\([\u000b\u0020-\u00ff])/g, Ga = /^[!#$%&'*+.^_`|~0-9A-Za-z-]+\/[!#$%&'*+.^_`|~0-9A-Za-z-]+$/;
 function P(a) {
@@ -486,14 +485,13 @@ function P(a) {
 }
 class Ha {
   constructor(a) {
-    this.parameters = Object.create(null);
+    this.parameters = {};
     this.type = a;
   }
 }
 ;/*
- media-typer
- Copyright(c) 2014-2017 Douglas Christopher Wilson
- MIT Licensed
+ MIT media-typer
+ 2014-2017 Douglas Christopher Wilson
 */
 const Ia = /^ *([A-Za-z0-9][A-Za-z0-9!#$&^_-]{0,126})\/([A-Za-z0-9][A-Za-z0-9!#$&^_.+-]{0,126}) *$/;
 /*
@@ -508,7 +506,7 @@ function Q(a, b) {
     var d = null;
   } else {
     try {
-      var e = P(a).type;
+      var {type:e} = P(a);
       if (!e) {
         throw new TypeError("argument string is required");
       }

@@ -1,3 +1,9 @@
+## 3 July 2019
+
+### [1.1.3](https://github.com/idiocc/koa/compare/v1.1.2...v1.1.3)
+
+- [deps] Update `goa` for external libraries (`@goa/type-is`, `@goa/content-type`) instead of included modules.
+
 ## 21 June 2019
 
 ### [1.1.2](https://github.com/idiocc/koa/compare/v1.1.1...v1.1.2)

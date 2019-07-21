@@ -1,4 +1,4 @@
-const _Koa = require('./depack')
+const _Koa = require('./koa')
 
 class Koa extends _Koa {
   /**

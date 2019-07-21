@@ -2,17 +2,19 @@
   "name": "@goa/koa",
   "version": "1.1.3",
   "description": "The Koa2 Fork Optimized With Google Closure Compiler That Has Just 1 Dependency (mime-db).",
-  "main": "depack/index.js",
+  "main": "compile/index.js",
   "scripts": {
     "t": "zoroaster -a",
     "test": "ALAMODE_ENV=test-build yarn t test.js test/spec",
-    "depack": "depack-dev src/depack -o depack -l -a -p -S --hide_warnings_for node_modules/util --hide_warnings_for node_modules/querystring --hide_warnings_for node_modules/net --hide_warnings_for node_modules/http --hide_warnings_for node_modules/events",
+    "compile": "depack-dev src/depack -o compile/koa.js -c -a -p",
     "doc": "NODE_DEBUG=doc doc -o README.md",
     "build": "yarn-s d b doc",
+    "dv": "typal types/vendor/*",
+    "typework": "typework types/config.json",
     "e": "alanode"
   },
   "files": [
-    "depack",
+    "compile",
     "types"
   ],
   "externs": "types/externs.js",
@@ -37,13 +39,14 @@
   },
   "homepage": "https://github.com/idiocc/koa#readme",
   "devDependencies": {
-    "@contexts/http": "^1.4.0",
-    "@goa/goa": "^1.3.2",
-    "@typedefs/goa": "^0.0.2",
+    "@contexts/http": "^1.5.1",
+    "@externs/goa": "^0.1.0",
+    "@goa/goa": "^1.3.3",
+    "@typedefs/goa": "^0.0.4",
     "alamode": "^2.3.4",
-    "documentary": "^1.27.4",
+    "documentary": "^1.27.7",
     "eslint-config-artdeco": "1.0.1",
-    "typework": "^0.1.0",
+    "typework": "^0.1.1",
     "yarn-s": "1.1.0",
     "zoroaster": "^4.1.1-alpha"
   },

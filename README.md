@@ -40,7 +40,7 @@ npm install @goa/koa
 - [`constructor(): Goa`](#constructor-goa)
 - [Copyright](#copyright)
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
 
 ## API
 
@@ -50,7 +50,7 @@ The package is available by importing its default function:
 import Goa from '@goa/koa'
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
 ## `constructor(): Goa`
 
@@ -89,7 +89,7 @@ http://localhost:3000
   headers: 
    { 'content-type': 'text/plain; charset=utf-8',
      'content-length': '11',
-     date: 'Sun, 12 May 2019 16:56:15 GMT',
+     date: 'Fri, 26 Jul 2019 01:34:23 GMT',
      connection: 'close' },
   statusCode: 201,
   statusMessage: 'example' }
@@ -97,7 +97,7 @@ http://localhost:3000
 </td></tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
 
 ## Copyright
 
@@ -109,23 +109,24 @@ The Koa web server by its [authors](https://github.com/koajs/koa).
   <tr>
     <th>
       <a href="https://artd.eco">
-        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+        <img width="100" src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png"
+          alt="Art Deco">
       </a>
     </th>
     <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://idio.cc">Idio</a> 2019</th>
     <th>
       <a href="https://idio.cc">
-        <img src="https://avatars3.githubusercontent.com/u/40834161?s=100" width="100" alt="Idio" />
+        <img src="https://avatars3.githubusercontent.com/u/40834161?s=100" width="100" alt="Idio">
       </a>
     </th>
     <th>
       <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
-          alt="Tech Nation Visa" />
+        <img width="100" src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"
+          alt="Tech Nation Visa">
       </a>
     </th>
     <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
   </tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/-1.svg?sanitize=true"></a></p>

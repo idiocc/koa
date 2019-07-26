@@ -738,40 +738,10 @@ function gb(a) {
 */
 var hb = /["'&<>]/;
 const {createHmac:ib} = _crypto;
-/*
- keygrip
- Copyright(c) 2011-2014 Jed Schmidt
- MIT Licensed
-*/
-class jb {
-  constructor(a, b = "sha1", c = "base64") {
-    if (!(a && 0 in a)) {
-      throw Error("Keys must be provided.");
-    }
-    this.a = b;
-    this.encoding = c;
-    this.keys = a;
-  }
-  sign(a) {
-    return kb(a, this.a, this.keys[0], this.encoding);
-  }
-  verify(a, b) {
-    return -1 < this.index(a, b);
-  }
-  index(a, b) {
-    for (let c = 0, d = this.keys.length; c < d; c++) {
-      const e = kb(a, this.a, this.keys[c], this.encoding);
-      if (lb(b, e)) {
-        return c;
-      }
-    }
-    return -1;
-  }
-}
-function kb(a, b, c, d) {
+function jb(a, b, c, d) {
   return ib(b, c).update(a).digest(d).replace(/\/|\+|=/g, e => ({"/":"_", "+":"-", "=":""})[e]);
 }
-function lb(a, b) {
+;function kb(a, b) {
   if (null == a && null != b || null == b && null != a) {
     return !1;
   }
@@ -785,6 +755,36 @@ function lb(a, b) {
     c |= a.charCodeAt(d) ^ b.charCodeAt(d);
   }
   return 0 === c;
+}
+;/*
+ keygrip
+ Copyright(c) 2011-2014 Jed Schmidt
+ MIT Licensed
+*/
+class lb {
+  constructor(a, b = "sha1", c = "base64") {
+    if (!(a && 0 in a)) {
+      throw Error("Keys must be provided.");
+    }
+    this.a = b;
+    this.encoding = c;
+    this.keys = a;
+  }
+  sign(a) {
+    return jb(a, this.a, this.keys[0], this.encoding);
+  }
+  verify(a, b) {
+    return -1 < this.index(a, b);
+  }
+  index(a, b) {
+    for (let c = 0, d = this.keys.length; c < d; c++) {
+      const e = jb(a, this.a, this.keys[c], this.encoding);
+      if (kb(b, e)) {
+        return c;
+      }
+    }
+    return -1;
+  }
 }
 ;const Q = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/, mb = /^(?:lax|strict)$/i;
 function nb(a) {
@@ -842,7 +842,7 @@ class pb {
     this.secure = void 0;
     this.request = a;
     this.a = b;
-    c && (this.keys = Array.isArray(c.keys) ? new jb(c.keys) : c.keys, this.secure = c.secure);
+    c && (this.keys = Array.isArray(c.keys) ? new lb(c.keys) : c.keys, this.secure = c.secure);
   }
   get(a, b) {
     var c = a + ".sig", d, e = b && void 0 !== b.signed ? b.signed : !!this.keys;

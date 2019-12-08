@@ -1,6 +1,9 @@
-## 26 July 2019
+## 8 December 2019
 
 ### [1.1.4](https://github.com/idiocc/koa/compare/v1.1.3...v1.1.4)
+
+- [doc] vendor Cookies and Accepts types.
+- [package] mv to compile.
 
 ## 3 July 2019
 

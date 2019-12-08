@@ -1,6 +1,6 @@
 # @goa/koa
 
-[![npm version](https://badge.fury.io/js/%40goa%2Fkoa.svg)](https://npmjs.org/package/@goa/koa)
+[![npm version](https://badge.fury.io/js/%40goa%2Fkoa.svg)](https://www.npmjs.com/package/@goa/koa)
 
 `@goa/koa` is the [Koa web-sever](https://koajs.com) compiled and optimised with _Google Closure Compiler_ so that it has only 1 dependency (`mime-db`, for easy access to upgrades). The types are written as JSDoc and don't require installing typings. The aim of this project is to demonstrate how to modernise the old-school NPM package making, including starting to use import/export statements without _Babel_, restoring to pure _JSDoc_ without TypeScript, and compiling the code into the single executable using the compiler, and testing the code with [_Zoroaster_](https://contexttesting.com) testing framework which is twice as fast and weighs 500KB against 50MB compared with _Jest_ (as used in the original repository).
 
@@ -40,7 +40,9 @@ npm install @goa/koa
 - [`constructor(): Goa`](#constructor-goa)
 - [Copyright](#copyright)
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/0.svg?sanitize=true">
+</a></p>
 
 ## API
 
@@ -50,9 +52,11 @@ The package is available by importing its default function:
 import Goa from '@goa/koa'
 ```
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+</a></p>
 
-## `constructor(): Goa`
+## <code><ins>constructor</ins>(): <i>Goa</i></code>
 
 Creates a new app.
 
@@ -89,7 +93,7 @@ http://localhost:3000
   headers: 
    { 'content-type': 'text/plain; charset=utf-8',
      'content-length': '11',
-     date: 'Fri, 26 Jul 2019 01:34:23 GMT',
+     date: 'Sun, 08 Dec 2019 19:03:03 GMT',
      connection: 'close' },
   statusCode: 201,
   statusMessage: 'example' }
@@ -97,7 +101,9 @@ http://localhost:3000
 </td></tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true">
+</a></p>
 
 ## Copyright
 
@@ -129,4 +135,6 @@ The Koa web server by its [authors](https://github.com/koajs/koa).
   </tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/-1.svg?sanitize=true">
+</a></p>

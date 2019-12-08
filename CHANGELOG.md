@@ -1,3 +1,9 @@
+## 9 December 2019
+
+### [1.1.5](https://github.com/idiocc/koa/compare/v1.1.4...v1.1.5)
+
+- [fix] Update types, compile with less warnings.
+
 ## 8 December 2019
 
 ### [1.1.4](https://github.com/idiocc/koa/compare/v1.1.3...v1.1.4)

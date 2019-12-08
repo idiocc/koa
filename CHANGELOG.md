@@ -1,3 +1,7 @@
+## 26 July 2019
+
+### [1.1.4](https://github.com/idiocc/koa/compare/v1.1.3...v1.1.4)
+
 ## 3 July 2019
 
 ### [1.1.3](https://github.com/idiocc/koa/compare/v1.1.2...v1.1.3)

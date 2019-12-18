@@ -13,7 +13,7 @@ const url = require('url');
 const net = require('net');
 const querystring = require('querystring');             
 var aa = tty;
-const {format:m, inspect:p} = util;
+const m = util.format, p = util.inspect;
 /*
 
  Copyright (c) 2016 Zeit, Inc.
@@ -129,14 +129,9 @@ const w = Object.keys(process.env).filter(a => /^debug_/i.test(a)).reduce((a, b)
 }, log:function(...a) {
   return process.stderr.write(m(...a) + "\n");
 }, formatArgs:function(a) {
-  const {namespace:b, useColors:c, color:d, diff:e} = this;
-  if (c) {
-    const f = "\u001b[3" + (8 > d ? d : "8;5;" + d), g = `  ${f};1m${b} \u001B[0m`;
-    a[0] = g + a[0].split("\n").join("\n" + g);
-    a.push(f + "m+" + ba(e) + "\u001b[0m");
-  } else {
-    a[0] = (w.hideDate ? "" : (new Date).toISOString() + " ") + b + " " + a[0];
-  }
+  var b = this.namespace, c = this.color;
+  const d = this.diff;
+  this.useColors ? (c = "\u001b[3" + (8 > c ? c : "8;5;" + c), b = `  ${c};1m${b} \u001B[0m`, a[0] = b + a[0].split("\n").join("\n" + b), a.push(c + "m+" + ba(d) + "\u001b[0m")) : a[0] = (w.hideDate ? "" : (new Date).toISOString() + " ") + b + " " + a[0];
 }, save:function(a) {
   a ? process.env.DEBUG = a : delete process.env.DEBUG;
 }, load:function() {
@@ -262,11 +257,11 @@ a: {
   }
 }
 const C = B, ra = C ? A(C) : {};
-const {OutgoingMessage:sa, createServer:ta} = http;
+const sa = http.OutgoingMessage, ta = http.createServer;
 var D = stream;
 var ua = events;
 var E = assert;
-const {basename:F, extname:G} = path;
+const F = path.basename, G = path.extname;
 var H = {[100]:"Continue", [101]:"Switching Protocols", [102]:"Processing", [103]:"Early Hints", [200]:"OK", [201]:"Created", [202]:"Accepted", [203]:"Non-Authoritative Information", [204]:"No Content", [205]:"Reset Content", [206]:"Partial Content", [207]:"Multi-Status", [208]:"Already Reported", [226]:"IM Used", [300]:"Multiple Choices", [301]:"Moved Permanently", [302]:"Found", [303]:"See Other", [304]:"Not Modified", [305]:"Use Proxy", [306]:"(Unused)", [307]:"Temporary Redirect", [308]:"Permanent Redirect", 
 [400]:"Bad Request", [401]:"Unauthorized", [402]:"Payment Required", [403]:"Forbidden", [404]:"Not Found", [405]:"Method Not Allowed", [406]:"Not Acceptable", [407]:"Proxy Authentication Required", [408]:"Request Timeout", [409]:"Conflict", [410]:"Gone", [411]:"Length Required", [412]:"Precondition Failed", [413]:"Payload Too Large", [414]:"URI Too Long", [415]:"Unsupported Media Type", [416]:"Range Not Satisfiable", [417]:"Expectation Failed", [418]:"I'm a teapot", [421]:"Misdirected Request", [422]:"Unprocessable Entity", 
 [423]:"Locked", [424]:"Failed Dependency", [425]:"Unordered Collection", [426]:"Upgrade Required", [428]:"Precondition Required", [429]:"Too Many Requests", [431]:"Request Header Fields Too Large", [451]:"Unavailable For Legal Reasons", [500]:"Internal Server Error", [501]:"Not Implemented", [502]:"Bad Gateway", [503]:"Service Unavailable", [504]:"Gateway Timeout", [505]:"HTTP Version Not Supported", [506]:"Variant Also Negotiates", [507]:"Insufficient Storage", [508]:"Loop Detected", [509]:"Bandwidth Limit Exceeded", 
@@ -401,7 +396,7 @@ function za(a) {
   b.s = [];
   return b;
 }
-;const {ReadStream:Ba} = fs;
+;const Ba = fs.ReadStream;
 /*
  MIT
  Copyright(c) 2014 Jonathan Ong
@@ -633,33 +628,39 @@ function Za(a, b) {
   } else {
     c = void 0;
   }
-  c = new $a(b, c);
-  b = c.parameters;
-  c = c.type;
-  if (!c || "string" !== typeof c || !Ya.test(c)) {
+  return $a(new ab(b, c));
+}
+function $a({parameters:a, type:b}) {
+  if ("string" != typeof b || !Ya.test(b)) {
     throw new TypeError("invalid type");
   }
-  c = String(c).toLowerCase();
-  if (b && "object" === typeof b) {
-    for (e = Object.keys(b).sort(), d = 0; d < e.length; d++) {
-      a = e[d], f = "*" === a.substr(-1) ? "UTF-8''" + encodeURIComponent(String(b[a])).replace(Ta, ab) : '"' + String(b[a]).replace(Wa, "\\$1") + '"', c += "; " + a + "=" + f;
+  b = `${b}`.toLowerCase();
+  if (a && "object" == typeof a) {
+    let c;
+    const d = Object.keys(a).sort();
+    for (let e = 0; e < d.length; e++) {
+      c = d[e];
+      const f = "*" == c.substr(-1) ? "UTF-8''" + encodeURIComponent(String(a[c])).replace(Ta, bb) : '"' + String(a[c]).replace(Wa, "\\$1") + '"';
+      b += "; " + c + "=" + f;
     }
   }
-  return c;
+  return b;
 }
-function ab(a) {
+function bb(a) {
   return "%" + String(a).charCodeAt(0).toString(16).toUpperCase();
 }
-function $a(a, b) {
-  this.type = a;
-  this.parameters = b;
+class ab {
+  constructor(a, b) {
+    this.type = a;
+    this.parameters = b;
+  }
 }
 ;/*
  MIT
  Author dead_horse <dead_horse@qq.com>
  https://github.com/node-modules/error-inject
 */
-function bb(a, b) {
+function cb(a, b) {
   if (a instanceof D && !a.listeners("error").includes(b)) {
     a.on("error", b);
   }
@@ -671,12 +672,12 @@ function bb(a, b) {
  [ylru] Author fengmk2
  https://github.com/node-modules/ylru
 */
-function cb(a, b, c) {
+function db(a, b, c) {
   a.cache.set(b, c);
   a.a++;
   a.a >= a.max && (a.a = 0, a.i = a.cache, a.cache = new Map);
 }
-class db {
+class eb {
   constructor(a) {
     this.max = a;
     this.a = 0;
@@ -688,20 +689,19 @@ class db {
       return e = e || Date.now();
     }
     let d = this.cache.get(a);
-    ({maxAge:b} = b);
+    b = b.maxAge;
     let e;
     if (d) {
       return d.j && c() > d.j ? (d.j = 0, d.value = void 0) : void 0 !== b && (a = b ? c() + b : 0, d.j = a), d.value;
     }
     if (d = this.i.get(a)) {
-      return d.j && c() > d.j ? (d.j = 0, d.value = void 0) : (cb(this, a, d), void 0 !== b && (a = b ? c() + b : 0, d.j = a)), d.value;
+      return d.j && c() > d.j ? (d.j = 0, d.value = void 0) : (db(this, a, d), void 0 !== b && (a = b ? c() + b : 0, d.j = a)), d.value;
     }
   }
   set(a, b, c = {}) {
-    ({maxAge:c} = c);
-    c = c ? Date.now() + c : 0;
+    c = (c = c.maxAge) ? Date.now() + c : 0;
     let d = this.cache.get(a);
-    d ? (d.j = c, d.value = b) : (d = {value:b, j:c}, cb(this, a, d));
+    d ? (d.j = c, d.value = b) : (d = {value:b, j:c}, db(this, a, d));
   }
   keys() {
     function a(d) {
@@ -718,13 +718,13 @@ class db {
     return Array.from(b.keys());
   }
 }
-const eb = new db(100);
+const fb = new eb(100);
 /*
  MIT
  Jonathan Ong
  https://npmjs.org/koa-is-json
 */
-function fb(a) {
+function gb(a) {
   return !a || "string" == typeof a || "function" == typeof a.pipe || Buffer.isBuffer(a) ? !1 : !0;
 }
 ;/*
@@ -734,12 +734,12 @@ function fb(a) {
  Copyright(c) 2015 Tiancheng "Timothy" Gu
  MIT Licensed
 */
-var gb = /["'&<>]/;
-const {createHmac:hb} = _crypto;
-function ib(a, b, c, d) {
-  return hb(b, c).update(a).digest(d).replace(/\/|\+|=/g, e => ({"/":"_", "+":"-", "=":""})[e]);
+var hb = /["'&<>]/;
+const ib = _crypto.createHmac;
+function jb(a, b, c, d) {
+  return ib(b, c).update(a).digest(d).replace(/\/|\+|=/g, e => ({"/":"_", "+":"-", "=":""})[e]);
 }
-;function jb(a, b) {
+;function kb(a, b) {
   if (null == a && null != b || null == b && null != a) {
     return !1;
   }
@@ -759,7 +759,7 @@ function ib(a, b, c, d) {
  Copyright(c) 2011-2014 Jed Schmidt
  MIT Licensed
 */
-class kb {
+class lb {
   constructor(a, b = "sha1", c = "base64") {
     if (!(a && 0 in a)) {
       throw Error("Keys must be provided.");
@@ -769,23 +769,23 @@ class kb {
     this.keys = a;
   }
   sign(a) {
-    return ib(a, this.a, this.keys[0], this.encoding);
+    return jb(a, this.a, this.keys[0], this.encoding);
   }
   verify(a, b) {
     return -1 < this.index(a, b);
   }
   index(a, b) {
     for (let c = 0, d = this.keys.length; c < d; c++) {
-      const e = ib(a, this.a, this.keys[c], this.encoding);
-      if (jb(b, e)) {
+      const e = jb(a, this.a, this.keys[c], this.encoding);
+      if (kb(b, e)) {
         return c;
       }
     }
     return -1;
   }
 }
-;const Q = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/, lb = /^(?:lax|strict)$/i;
-function mb(a) {
+;const Q = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/, mb = /^(?:lax|strict)$/i;
+function nb(a) {
   var b = a.toString();
   a.maxAge && (a.expires = new Date(Date.now() + a.maxAge));
   a.path && (b += "; path=" + a.path);
@@ -796,7 +796,7 @@ function mb(a) {
   a.httpOnly && (b += "; httponly");
   return b;
 }
-class nb {
+class ob {
   constructor(a, b, c) {
     this.path = "/";
     this.maxAge = this.domain = this.expires = void 0;
@@ -820,7 +820,7 @@ class nb {
     if (this.domain && !Q.test(this.domain)) {
       throw new TypeError("option domain is invalid");
     }
-    if (this.sameSite && !0 !== this.sameSite && !lb.test(this.sameSite)) {
+    if (this.sameSite && !0 !== this.sameSite && !mb.test(this.sameSite)) {
       throw new TypeError("option sameSite is invalid");
     }
   }
@@ -835,12 +835,12 @@ class nb {
  MIT Licensed
 */
 const R = {};
-class ob {
+class pb {
   constructor(a, b, c) {
     this.secure = void 0;
     this.request = a;
     this.a = b;
-    c && (this.keys = Array.isArray(c.keys) ? new kb(c.keys) : c.keys, this.secure = c.secure);
+    c && (this.keys = Array.isArray(c.keys) ? new lb(c.keys) : c.keys, this.secure = c.secure);
   }
   get(a, b) {
     var c = a + ".sig", d, e = b && void 0 !== b.signed ? b.signed : !!this.keys;
@@ -866,44 +866,45 @@ class ob {
     }
   }
   set(a, b, c = {}) {
-    const {a:d, request:e} = this;
+    const d = this.a;
+    var e = this.request;
     let f = d.getHeader("Set-Cookie") || [];
     "string" == typeof f && (f = [f]);
     var g = e.protocol;
-    const k = e.connection.encrypted;
-    g = void 0 !== this.secure ? !!this.secure : "https" == g || k;
-    const {signed:h = !!this.keys, ...l} = c;
-    a = new nb(a, b, l);
+    e = e.connection.encrypted;
+    g = void 0 !== this.secure ? !!this.secure : "https" == g || e;
+    const {signed:k = !!this.keys, ...h} = c;
+    a = new ob(a, b, h);
     if (!g && c.secure) {
       throw Error("Cannot send secure cookie over unencrypted connection");
     }
     a.secure = g;
     "secure" in c || (a.secure = g);
-    pb(f, a);
-    if (c && h) {
+    qb(f, a);
+    if (c && k) {
       if (!this.keys) {
         throw Error(".keys required for signed cookies");
       }
       a.value = this.keys.sign(a.toString());
       a.name += ".sig";
-      pb(f, a);
+      qb(f, a);
     }
     (d.set ? sa.prototype.setHeader : d.setHeader).call(d, "Set-Cookie", f);
     return this;
   }
 }
-function pb(a, b) {
+function qb(a, b) {
   if (b.overwrite) {
     for (var c = a.length - 1; 0 <= c; c--) {
       0 === a[c].indexOf(b.name + "=") && a.splice(c, 1);
     }
   }
-  a.push(mb(b));
+  a.push(nb(b));
 }
-;const qb = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
-function rb(a) {
+;const rb = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
+function sb(a) {
   return a.split(",").map((b, c) => {
-    var d = qb.exec(b.trim());
+    var d = rb.exec(b.trim());
     if (d) {
       b = d[1];
       var e = 1;
@@ -926,10 +927,10 @@ function rb(a) {
     }
   }).filter(Boolean);
 }
-function sb(a, b) {
-  const c = rb(void 0 === a ? "*" : a || "");
+function tb(a, b) {
+  const c = sb(void 0 === a ? "*" : a || "");
   if (!b) {
-    return c.filter(tb).sort(ub).map(vb);
+    return c.filter(ub).sort(vb).map(wb);
   }
   const d = b.map((e, f) => {
     {
@@ -954,23 +955,23 @@ function sb(a, b) {
     }
     return e;
   });
-  return d.filter(tb).sort(ub).map(e => b[d.indexOf(e)]);
+  return d.filter(ub).sort(vb).map(e => b[d.indexOf(e)]);
 }
-function ub(a, b) {
+function vb(a, b) {
   return b.q - a.q || b.g - a.g || a.c - b.c || a.h - b.h || 0;
 }
-function vb(a) {
+function wb(a) {
   return a.charset;
 }
-function tb(a) {
+function ub(a) {
   return 0 < a.q;
 }
-;const wb = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
-function xb(a) {
+;const xb = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
+function yb(a) {
   a = a.split(",");
   for (var b = !1, c = 1, d = 0, e = 0; d < a.length; d++) {
     var f = d;
-    var g = wb.exec(a[d].trim());
+    var g = xb.exec(a[d].trim());
     if (g) {
       var k = g[1], h = 1;
       if (g[2]) {
@@ -987,13 +988,13 @@ function xb(a) {
     } else {
       f = null;
     }
-    f && (a[e++] = f, b = b || yb("identity", f, void 0), c = Math.min(c, f.q || 1));
+    f && (a[e++] = f, b = b || zb("identity", f, void 0), c = Math.min(c, f.q || 1));
   }
   b || (a[e++] = {encoding:"identity", q:c, h:d});
   a.length = e;
   return a;
 }
-function yb(a, b, c) {
+function zb(a, b, c) {
   var d = 0;
   if (b.encoding.toLowerCase() === a.toLowerCase()) {
     d |= 1;
@@ -1004,43 +1005,43 @@ function yb(a, b, c) {
   }
   return {h:c, c:b.h, q:b.q, g:d};
 }
-function zb(a, b) {
-  var c = xb(a || "");
+function Ab(a, b) {
+  var c = yb(a || "");
   if (!b) {
-    return c.filter(Ab).sort(Bb).map(Cb);
+    return c.filter(Bb).sort(Cb).map(Db);
   }
   var d = b.map(function(e, f) {
     for (var g = {c:-1, q:0, g:0}, k = 0; k < c.length; k++) {
-      var h = yb(e, c[k], f);
+      var h = zb(e, c[k], f);
       h && 0 > (g.g - h.g || g.q - h.q || g.c - h.c) && (g = h);
     }
     return g;
   });
-  return d.filter(Ab).sort(Bb).map(function(e) {
+  return d.filter(Bb).sort(Cb).map(function(e) {
     return b[d.indexOf(e)];
   });
 }
-function Bb(a, b) {
+function Cb(a, b) {
   return b.q - a.q || b.g - a.g || a.c - b.c || a.h - b.h || 0;
 }
-function Cb(a) {
+function Db(a) {
   return a.encoding;
 }
-function Ab(a) {
+function Bb(a) {
   return 0 < a.q;
 }
-;const Db = /^\s*([^\s\-;]+)(?:-([^\s;]+))?\s*(?:;(.*))?$/;
-function Eb(a) {
+;const Eb = /^\s*([^\s\-;]+)(?:-([^\s;]+))?\s*(?:;(.*))?$/;
+function Fb(a) {
   a = a.split(",");
   for (var b = 0, c = 0; b < a.length; b++) {
-    var d = Fb(a[b].trim(), b);
+    var d = Gb(a[b].trim(), b);
     d && (a[c++] = d);
   }
   a.length = c;
   return a;
 }
-function Fb(a, b) {
-  var c = Db.exec(a);
+function Gb(a, b) {
+  var c = Eb.exec(a);
   if (!c) {
     return null;
   }
@@ -1057,16 +1058,16 @@ function Fb(a, b) {
   }
   return {prefix:a, H:d, q:f, h:b, m:e};
 }
-function Gb(a, b) {
-  var c = Eb(void 0 === a ? "*" : a || "");
+function Hb(a, b) {
+  var c = Fb(void 0 === a ? "*" : a || "");
   if (!b) {
-    return c.filter(Hb).sort(Ib).map(Jb);
+    return c.filter(Ib).sort(Jb).map(Kb);
   }
   var d = b.map(function(e, f) {
     for (var g = {c:-1, q:0, g:0}, k = 0; k < c.length; k++) {
       a: {
         var h = c[k];
-        var l = f, n = Fb(e, void 0);
+        var l = f, n = Gb(e, void 0);
         if (n) {
           var t = 0;
           if (h.m.toLowerCase() === n.m.toLowerCase()) {
@@ -1094,35 +1095,35 @@ function Gb(a, b) {
     }
     return g;
   });
-  return d.filter(Hb).sort(Ib).map(function(e) {
+  return d.filter(Ib).sort(Jb).map(function(e) {
     return b[d.indexOf(e)];
   });
 }
-function Ib(a, b) {
+function Jb(a, b) {
   return b.q - a.q || b.g - a.g || a.c - b.c || a.h - b.h || 0;
 }
-function Jb(a) {
+function Kb(a) {
   return a.m;
 }
-function Hb(a) {
+function Ib(a) {
   return 0 < a.q;
 }
-;const Kb = /^\s*([^s/;]+)\/([^;\s]+)\s*(?:;(.*))?$/;
-function Lb(a) {
+;const Lb = /^\s*([^s/;]+)\/([^;\s]+)\s*(?:;(.*))?$/;
+function Mb(a) {
   a = a.split(",");
   for (var b = 1, c = 0; b < a.length; b++) {
-    0 == Mb(a[c]) % 2 ? a[++c] = a[b] : a[c] += "," + a[b];
+    0 == Nb(a[c]) % 2 ? a[++c] = a[b] : a[c] += "," + a[b];
   }
   a.length = c + 1;
   for (c = b = 0; b < a.length; b++) {
-    var d = Nb(a[b].trim(), b);
+    var d = Ob(a[b].trim(), b);
     d && (a[c++] = d);
   }
   a.length = c;
   return a;
 }
-function Nb(a, b) {
-  var c = Kb.exec(a);
+function Ob(a, b) {
+  var c = Lb.exec(a);
   if (!c) {
     return null;
   }
@@ -1131,13 +1132,13 @@ function Nb(a, b) {
   if (c[3]) {
     c = c[3].split(";");
     for (var g = 1, k = 0; g < c.length; g++) {
-      0 == Mb(c[k]) % 2 ? c[++k] = c[g] : c[k] += ";" + c[g];
+      0 == Nb(c[k]) % 2 ? c[++k] = c[g] : c[k] += ";" + c[g];
     }
     c.length = k + 1;
     for (g = 0; g < c.length; g++) {
       c[g] = c[g].trim();
     }
-    c = c.map(Ob);
+    c = c.map(Pb);
     for (g = 0; g < c.length; g++) {
       var h = c[g];
       k = h[0].toLowerCase();
@@ -1151,8 +1152,8 @@ function Nb(a, b) {
   }
   return {type:f, v:e, u:a, q:d, h:b};
 }
-function Pb(a, b, c) {
-  var d = Nb(a, void 0);
+function Qb(a, b, c) {
+  var d = Ob(a, void 0);
   a = 0;
   if (!d) {
     return null;
@@ -1183,38 +1184,38 @@ function Pb(a, b, c) {
   }
   return {h:c, c:b.h, q:b.q, g:a};
 }
-function Qb(a, b) {
-  var c = Lb(void 0 === a ? "*/*" : a || "");
+function Rb(a, b) {
+  var c = Mb(void 0 === a ? "*/*" : a || "");
   if (!b) {
-    return c.filter(Rb).sort(Sb).map(Tb);
+    return c.filter(Sb).sort(Tb).map(Ub);
   }
   var d = b.map(function(e, f) {
     for (var g = {c:-1, q:0, g:0}, k = 0; k < c.length; k++) {
-      var h = Pb(e, c[k], f);
+      var h = Qb(e, c[k], f);
       h && 0 > (g.g - h.g || g.q - h.q || g.c - h.c) && (g = h);
     }
     return g;
   });
-  return d.filter(Rb).sort(Sb).map(function(e) {
+  return d.filter(Sb).sort(Tb).map(function(e) {
     return b[d.indexOf(e)];
   });
 }
-function Sb(a, b) {
+function Tb(a, b) {
   return b.q - a.q || b.g - a.g || a.c - b.c || a.h - b.h || 0;
 }
-function Tb(a) {
+function Ub(a) {
   return a.type + "/" + a.v;
 }
-function Rb(a) {
+function Sb(a) {
   return 0 < a.q;
 }
-function Mb(a) {
+function Nb(a) {
   for (var b = 0, c = 0; -1 !== (c = a.indexOf('"', c));) {
     b++, c++;
   }
   return b;
 }
-function Ob(a) {
+function Pb(a) {
   var b = a.indexOf("=");
   if (-1 === b) {
     var c = a;
@@ -1231,7 +1232,7 @@ function Ob(a) {
  Copyright(c) 2015 Douglas Christopher Wilson
  https://npmjs.org/negotiator
 */
-class Ub {
+class Vb {
   constructor(a) {
     this.request = a;
     this.headers = this.request.headers;
@@ -1240,25 +1241,25 @@ class Ub {
     return (a = this.charsets(a)) && a[0];
   }
   charsets(a) {
-    return sb(this.headers["accept-charset"], a);
+    return tb(this.headers["accept-charset"], a);
   }
   encoding(a) {
     return (a = this.encodings(a)) && a[0];
   }
   encodings(a) {
-    return zb(this.headers["accept-encoding"], a);
+    return Ab(this.headers["accept-encoding"], a);
   }
   language(a) {
     return (a = this.languages(a)) && a[0];
   }
   languages(a) {
-    return Gb(this.headers["accept-language"], a);
+    return Hb(this.headers["accept-language"], a);
   }
   mediaType(a) {
     return (a = this.mediaTypes(a)) && a[0];
   }
   mediaTypes(a) {
-    return Qb(this.headers.accept, a);
+    return Rb(this.headers.accept, a);
   }
 }
 ;/*
@@ -1267,10 +1268,10 @@ class Ub {
  Copyright(c) 2015 Douglas Christopher Wilson
  https://npmjs.org/accepts
 */
-class Vb {
+class Wb {
   constructor(a) {
     this.headers = a.headers;
-    this.a = new Ub(a);
+    this.a = new Vb(a);
   }
   types(a, ...b) {
     a && !Array.isArray(a) && (a = [a, ...b]);
@@ -1280,8 +1281,8 @@ class Vb {
     if (!this.headers.accept) {
       return a[0];
     }
-    b = a.map(Wb);
-    var c = this.a.mediaTypes(b.filter(Xb));
+    b = a.map(Xb);
+    var c = this.a.mediaTypes(b.filter(Yb));
     [c] = c;
     return c ? a[b.indexOf(c)] : !1;
   }
@@ -1316,10 +1317,10 @@ class Vb {
     return this.languages;
   }
 }
-function Wb(a) {
+function Xb(a) {
   return -1 == a.indexOf("/") ? P(a) : a;
 }
-function Xb(a) {
+function Yb(a) {
   return "string" == typeof a;
 }
 ;/*
@@ -1363,7 +1364,7 @@ function S(...a) {
   }
   return b;
 }
-class Yb extends Error {
+class Zb extends Error {
   constructor(a) {
     super();
     this.message = a;
@@ -1378,10 +1379,10 @@ class Yb extends Error {
 }
 wa.forEach(a => {
   let b;
-  const c = Zb(J[a]), d = c.match(/Error$/) ? c : c + "Error";
+  const c = $b(J[a]), d = c.match(/Error$/) ? c : c + "Error";
   switch(Number(String(a).charAt(0) + "00")) {
     case 400:
-      b = class extends Yb {
+      b = class extends Zb {
         constructor(e) {
           super(e);
           this.code = a;
@@ -1391,7 +1392,7 @@ wa.forEach(a => {
       };
       break;
     case 500:
-      b = class extends Yb {
+      b = class extends Zb {
         constructor(e) {
           super(e);
           this.code = a;
@@ -1402,7 +1403,7 @@ wa.forEach(a => {
   }
   b && (S[a] = b, S[c] = b);
 }, {});
-function Zb(a) {
+function $b(a) {
   return a.split(" ").map(function(b) {
     return b.charAt(0).toUpperCase() + b.slice(1);
   }).join("").replace(/[^ _0-9a-z]/gi, "");
@@ -1419,7 +1420,7 @@ function T(a, b) {
   });
   return a;
 }
-function $b(a, b) {
+function ac(a, b) {
   var c = a.a, d = a.target;
   a.C.push(b);
   c.__defineSetter__(b, function(e) {
@@ -1427,7 +1428,7 @@ function $b(a, b) {
   });
   return a;
 }
-class ac {
+class bc {
   constructor(a, b) {
     this.a = a;
     this.target = b;
@@ -1444,20 +1445,20 @@ class ac {
     return this;
   }
   access(a) {
-    return $b(T(this, a), a);
+    return ac(T(this, a), a);
   }
 }
 ;/*
  MIT jshttp/http-assert
 */
-function bc(a, b, c, d) {
+function cc(a, b, c, d) {
   if (!a) {
     throw S(b, c, d);
   }
 }
-;const {URL:cc, Url:U, format:dc, parse:ec} = url;
-const {isIP:fc} = net;
-const {parse:gc, stringify:hc} = querystring;
+;const dc = url.URL, U = url.Url, ec = url.format, fc = url.parse;
+const gc = net.isIP;
+const hc = querystring.parse, ic = querystring.stringify;
 /*
  parseurl
  Copyright(c) 2014 Jonathan Ong
@@ -1473,7 +1474,7 @@ function V(a) {
     }
     a: {
       if ("string" !== typeof b || 47 !== b.charCodeAt(0)) {
-        c = ec(b);
+        c = fc(b);
       } else {
         c = b;
         for (var d = null, e = null, f = 1; f < b.length; f++) {
@@ -1489,7 +1490,7 @@ function V(a) {
             case 35:
             case 160:
             case 65279:
-              c = ec(b);
+              c = fc(b);
               break a;
           }
         }
@@ -1511,10 +1512,10 @@ function V(a) {
  Copyright(c) 2016-2017 Douglas Christopher Wilson
  MIT Licensed
 */
-var ic = /(?:^|,)\s*?no-cache\s*?(?:,|$)/;
-function jc(a, b) {
+var jc = /(?:^|,)\s*?no-cache\s*?(?:,|$)/;
+function kc(a, b) {
   var c = a["if-modified-since"], d = a["if-none-match"];
-  if (!c && !d || (a = a["cache-control"]) && ic.test(a)) {
+  if (!c && !d || (a = a["cache-control"]) && jc.test(a)) {
     return !1;
   }
   if (d && "*" !== d) {
@@ -1546,14 +1547,14 @@ function jc(a, b) {
       return !1;
     }
   }
-  return !c || (b = b["last-modified"], b && kc(b) <= kc(c)) ? !0 : !1;
+  return !c || (b = b["last-modified"], b && lc(b) <= lc(c)) ? !0 : !1;
 }
-function kc(a) {
+function lc(a) {
   a = a && Date.parse(a);
   return "number" === typeof a ? a : NaN;
 }
 ;const W = Symbol("context#ip");
-class lc {
+class mc {
   constructor() {
     this.res = this.req = this.response = this.ctx = this.app = null;
     this.originalUrl = "";
@@ -1595,21 +1596,21 @@ class lc {
   }
   set path(a) {
     const b = V(this.req);
-    b.pathname !== a && (b.pathname = a, b.path = null, this.url = dc(b));
+    b.pathname !== a && (b.pathname = a, b.path = null, this.url = ec(b));
   }
   get query() {
     const a = this.querystring, b = this.l = this.l || {};
-    return b[a] || (b[a] = gc(a));
+    return b[a] || (b[a] = hc(a));
   }
   set query(a) {
-    this.querystring = hc(a);
+    this.querystring = ic(a);
   }
   get querystring() {
     return this.req ? V(this.req).query || "" : "";
   }
   set querystring(a) {
     const b = V(this.req);
-    b.search !== `?${a}` && (b.search = a, b.path = null, this.url = dc(b));
+    b.search !== `?${a}` && (b.search = a, b.path = null, this.url = ec(b));
   }
   get search() {
     return this.querystring ? `?${this.querystring}` : "";
@@ -1618,8 +1619,7 @@ class lc {
     this.querystring = a;
   }
   get host() {
-    var {proxy:a} = this.app;
-    a = a && this.get("X-Forwarded-Host");
+    let a = this.app.proxy && this.get("X-Forwarded-Host");
     a || (2 <= this.req.httpVersionMajor && (a = this.get(":authority")), a || (a = this.get("Host")));
     return a ? a.split(/\s*,\s*/, 1)[0] : "";
   }
@@ -1631,7 +1631,7 @@ class lc {
     if (!this.a) {
       const a = this.originalUrl || "";
       try {
-        this.a = new cc(`${this.origin}${a}`);
+        this.a = new dc(`${this.origin}${a}`);
       } catch (b) {
         this.a = Object.create(null);
       }
@@ -1640,7 +1640,7 @@ class lc {
   }
   get fresh() {
     const a = this.method, b = this.ctx.status;
-    return "GET" != a && "HEAD" != a ? !1 : 200 <= b && 300 > b || 304 == b ? jc(this.header, this.response.header) : !1;
+    return "GET" != a && "HEAD" != a ? !1 : 200 <= b && 300 > b || 304 == b ? kc(this.header, this.response.header) : !1;
   }
   get stale() {
     return !this.fresh;
@@ -1677,7 +1677,7 @@ class lc {
     return "https" == this.protocol;
   }
   get ips() {
-    const {proxy:a} = this.app, b = this.get("X-Forwarded-For");
+    const a = this.app.proxy, b = this.get("X-Forwarded-For");
     return a && b ? b.split(/\s*,\s*/) : [];
   }
   get ip() {
@@ -1689,10 +1689,10 @@ class lc {
   }
   get subdomains() {
     const a = this.app.subdomainOffset, b = this.hostname;
-    return fc(b) ? [] : b.split(".").reverse().slice(a);
+    return gc(b) ? [] : b.split(".").reverse().slice(a);
   }
   get accept() {
-    return this.i || (this.i = new Vb(this.req));
+    return this.i || (this.i = new Wb(this.req));
   }
   set accept(a) {
     this.i = a;
@@ -1760,7 +1760,7 @@ class Y {
     return {request:this.request.toJSON(), response:this.response.toJSON(), app:this.app.toJSON(), originalUrl:this.originalUrl, req:"<original node req>", res:"<original node res>", socket:"<original node socket>"};
   }
   get assert() {
-    return bc;
+    return cc;
   }
   throw(...a) {
     throw S(...a);
@@ -1774,7 +1774,7 @@ class Y {
       }
       this.app.emit("error", a, this);
       if (!b) {
-        var {res:c} = this;
+        var c = this.res;
         c.getHeaderNames().forEach(d => c.removeHeader(d));
         this.set(a.headers);
         this.type = "text";
@@ -1789,7 +1789,7 @@ class Y {
     }
   }
   get cookies() {
-    this[X] || (this[X] = new ob(this.req, this.res, {keys:this.app.keys, secure:this.request.secure}));
+    this[X] || (this[X] = new pb(this.req, this.res, {keys:this.app.keys, secure:this.request.secure}));
     return this[X];
   }
   set cookies(a) {
@@ -1799,9 +1799,9 @@ class Y {
     return this.inspect();
   }
 }
-T(T((new ac(Y.prototype, "response")).method("attachment").method("redirect").method("remove").method("vary").method("set").method("append").method("flushHeaders").access("status").access("message").access("body").access("length").access("type").access("lastModified").access("etag"), "headerSent"), "writable");
-T(T(T(T(T(T(T(T(T(T(T(T(T(T((new ac(Y.prototype, "request")).method("acceptsLanguages").method("acceptsEncodings").method("acceptsCharsets").method("accepts").method("get").method("is").access("querystring").access("idempotent").access("socket").access("search").access("method").access("query").access("path").access("url").access("accept"), "origin"), "href"), "subdomains"), "protocol"), "host"), "hostname"), "URL"), "header"), "headers"), "secure"), "stale"), "fresh"), "ips"), "ip");
-class mc {
+T(T((new bc(Y.prototype, "response")).method("attachment").method("redirect").method("remove").method("vary").method("set").method("append").method("flushHeaders").access("status").access("message").access("body").access("length").access("type").access("lastModified").access("etag"), "headerSent"), "writable");
+T(T(T(T(T(T(T(T(T(T(T(T(T(T((new bc(Y.prototype, "request")).method("acceptsLanguages").method("acceptsEncodings").method("acceptsCharsets").method("accepts").method("get").method("is").access("querystring").access("idempotent").access("socket").access("search").access("method").access("query").access("path").access("url").access("accept"), "origin"), "href"), "subdomains"), "protocol"), "host"), "hostname"), "URL"), "header"), "headers"), "secure"), "stale"), "fresh"), "ips"), "ip");
+class nc {
   constructor() {
     this.i = this.res = this.req = this.request = this.ctx = this.app = null;
     this.a = void 0;
@@ -1838,7 +1838,7 @@ class mc {
     } else {
       this.i || (this.status = 200);
       var c = !this.header["content-type"];
-      "string" == typeof a ? (c && (this.type = /^\s*</.test(a) ? "html" : "text"), this.length = Buffer.byteLength(a)) : Buffer.isBuffer(a) ? (c && (this.type = "bin"), this.length = a.length) : "function" == typeof a.pipe ? (L(this.res, Ca.bind(null, a)), bb(a, d => this.ctx.onerror(d)), null != b && b != a && this.remove("Content-Length"), c && (this.type = "bin")) : (this.remove("Content-Length"), this.type = "json");
+      "string" == typeof a ? (c && (this.type = /^\s*</.test(a) ? "html" : "text"), this.length = Buffer.byteLength(a)) : Buffer.isBuffer(a) ? (c && (this.type = "bin"), this.length = a.length) : "function" == typeof a.pipe ? (L(this.res, Ca.bind(null, a)), cb(a, d => this.ctx.onerror(d)), null != b && b != a && this.remove("Content-Length"), c && (this.type = "bin")) : (this.remove("Content-Length"), this.type = "json");
     }
   }
   set length(a) {
@@ -1846,7 +1846,7 @@ class mc {
   }
   get length() {
     const a = this.header["content-length"], b = this.body;
-    return null == a ? b ? "string" == typeof b ? Buffer.byteLength(b) : Buffer.isBuffer(b) ? b.length : fb(b) ? Buffer.byteLength(JSON.stringify(b)) : null : null : Math.trunc(parseInt(a, 10)) || 0;
+    return null == a ? b ? "string" == typeof b ? Buffer.byteLength(b) : Buffer.isBuffer(b) ? b.length : gb(b) ? Buffer.byteLength(JSON.stringify(b)) : null : null : Math.trunc(parseInt(a, 10)) || 0;
   }
   get headerSent() {
     return this.res.headersSent;
@@ -1894,7 +1894,7 @@ class mc {
     this.set("Location", a);
     xa[this.status] || (this.status = 302);
     if (this.ctx.accepts("html")) {
-      var c = gb.exec(a);
+      var c = hb.exec(a);
       if (c) {
         b = "";
         var d, e = 0;
@@ -1935,7 +1935,7 @@ class mc {
     this.set("Content-Disposition", Za(a, b));
   }
   set type(a) {
-    var b = eb.get(a);
+    var b = fb.get(a);
     if (!b) {
       if (a && "string" == typeof a) {
         if (b = -1 == a.indexOf("/") ? P(a) : a) {
@@ -1955,7 +1955,7 @@ class mc {
       } else {
         b = !1;
       }
-      eb.set(a, b);
+      fb.set(a, b);
     }
     (a = b) ? this.set("Content-Type", a) : this.remove("Content-Type");
   }
@@ -2037,7 +2037,7 @@ class mc {
  (c) dead-horse
  https://npmjs.org/koa-compose
 */
-function nc(a) {
+function oc(a) {
   if (!Array.isArray(a)) {
     throw new TypeError("Middleware stack must be an array!");
   }
@@ -2088,17 +2088,17 @@ Z = function() {
     return c;
   };
 }()("@goa/koa:application");
-async function oc(a, b) {
+async function pc(a, b) {
   const c = a.res;
   c.statusCode = 404;
   L(c, d => a.onerror(d));
   try {
-    return await b(a), pc(a);
+    return await b(a), qc(a);
   } catch (d) {
     a.onerror(d);
   }
 }
-class qc extends ua {
+class rc extends ua {
   constructor() {
     super();
     this.silent = this.proxy = !1;
@@ -2106,8 +2106,8 @@ class qc extends ua {
     this.subdomainOffset = 2;
     this.env = process.env.NODE_ENV || "development";
     this.context = Object.create(Y.prototype);
-    this.request = Object.create(lc.prototype);
-    this.response = Object.create(mc.prototype);
+    this.request = Object.create(mc.prototype);
+    this.response = Object.create(nc.prototype);
     this.keys = void 0;
   }
   [p.custom]() {
@@ -2135,13 +2135,13 @@ class qc extends ua {
     return this;
   }
   callback() {
-    const a = nc(this.middleware);
+    const a = oc(this.middleware);
     if (!this.listenerCount("error")) {
       this.on("error", this.onerror);
     }
     return (b, c) => {
       b = this.createContext(b, c);
-      return oc(b, a);
+      return pc(b, a);
     };
   }
   createContext(a, b) {
@@ -2163,33 +2163,33 @@ class qc extends ua {
     404 == a.status || a.expose || this.silent || (a = a.stack || a.toString(), console.error(), console.error(a.replace(/^/gm, "  ")), console.error());
   }
 }
-function pc(a) {
+function qc(a) {
   if (0 != a.respond && a.writable) {
-    var b = a.res, c = a.body, d = a.status;
-    if (I[d]) {
+    var b = a.res, c = a.status, d = a.body;
+    if (I[c]) {
       return a.body = null, b.end();
     }
     if ("HEAD" == a.method) {
-      return !b.headersSent && fb(c) && (a.length = Buffer.byteLength(JSON.stringify(c))), b.end();
+      return !b.headersSent && gb(d) && (a.length = Buffer.byteLength(JSON.stringify(d))), b.end();
     }
-    if (null == c) {
-      return 2 <= a.req.httpVersionMajor ? c = String(d) : c = a.message || String(d), b.headersSent || (a.type = "text", a.length = Buffer.byteLength(c)), b.end(c);
+    if (null == d) {
+      return d = 2 <= a.req.httpVersionMajor ? String(c) : a.message || String(c), b.headersSent || (a.type = "text", a.length = Buffer.byteLength(d)), b.end(d);
     }
-    if (Buffer.isBuffer(c)) {
-      return b.end(c);
+    if (Buffer.isBuffer(d)) {
+      return b.end(d);
     }
-    if ("string" == typeof c) {
-      return b.end(c);
+    if ("string" == typeof d) {
+      return b.end(d);
     }
-    if (c instanceof D) {
-      return c.pipe(b);
+    if (d instanceof D) {
+      return d.pipe(b);
     }
-    c = JSON.stringify(c);
-    b.headersSent || (a.length = Buffer.byteLength(c));
-    b.end(c);
+    d = JSON.stringify(d);
+    b.headersSent || (a.length = Buffer.byteLength(d));
+    b.end(d);
   }
 }
-;module.exports = qc;
+;module.exports = rc;
 
 
 //# sourceMappingURL=koa.js.map

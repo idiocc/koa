@@ -18,7 +18,7 @@ Creates a new app.
 <!-- block-start -->
 <tr><td>
 
-%EXAMPLE: example, ../ => @goa/koa%
+%EXAMPLE: example, ../compile => @goa/koa%
 </td>
 <td>
 

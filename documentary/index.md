@@ -33,6 +33,8 @@ npm install @goa/koa
 </tr>
 </table>
 
+This package actually compiles the [Goa Source Code](/idiocc/goa). You can find all the documentation on that package's page.
+
 <!-- therefore they work not just with TypeScript-based editors and don't require downloading additional data. -->
 
 ## Table Of Contents

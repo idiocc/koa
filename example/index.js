@@ -1,5 +1,5 @@
 import aqt from '@rqt/aqt'
-import Goa from '../'
+import Goa from '../compile'
 
 const goa = new Goa()
 goa.use(async (ctx, next) => {

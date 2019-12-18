@@ -33,12 +33,14 @@ npm install @goa/koa
 </tr>
 </table>
 
+This package actually compiles the [Goa Source Code](/idiocc/goa). You can find all the documentation on that package's page.
+
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [`constructor(): Goa`](#constructor-goa)
-- [Copyright](#copyright)
+- [Copyright & License](#copyright--license)
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/0.svg?sanitize=true">
@@ -93,7 +95,7 @@ http://localhost:3000
   headers: 
    { 'content-type': 'text/plain; charset=utf-8',
      'content-length': '11',
-     date: 'Sun, 08 Dec 2019 19:03:03 GMT',
+     date: 'Wed, 18 Dec 2019 18:33:03 GMT',
      connection: 'close' },
   statusCode: 201,
   statusMessage: 'example' }
@@ -105,11 +107,11 @@ http://localhost:3000
   <img src="/.documentary/section-breaks/2.svg?sanitize=true">
 </a></p>
 
-## Copyright
+## Copyright & License
 
-The Koa web server by its [authors](https://github.com/koajs/koa).
+GNU Affero General Public License v3.0
 
----
+Original work on the [Koa Web Server](https://github.com/koajs/koa) by its authors under MIT License found in [Goa's Source Code](/idiocc/goa) repository.
 
 <table>
   <tr>

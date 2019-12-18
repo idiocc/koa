@@ -1,3 +1,10 @@
+## 18 December 2019
+
+### [2.0.0](https://github.com/idiocc/koa/compare/v1.1.5...v2.0.0)
+
+- [template] Use `typeof Application` in the template.
+- [license] Update to AGPL-3.0.
+
 ## 9 December 2019
 
 ### [1.1.5](https://github.com/idiocc/koa/compare/v1.1.4...v1.1.5)

@@ -1,6 +1,6 @@
 {
   "name": "@goa/koa",
-  "version": "1.1.5",
+  "version": "2.0.0",
   "description": "The Koa2 Fork Optimized With Closure Compiler That Has Just 1 Dependency (mime-db).",
   "main": "compile/index.js",
   "scripts": {

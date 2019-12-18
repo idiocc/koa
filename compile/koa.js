@@ -151,20 +151,20 @@ const w = Object.keys(process.env).filter(a => /^debug_/i.test(a)).reduce((a, b)
 function ia(a) {
   function b(...g) {
     if (b.enabled) {
-      var h = Number(new Date);
-      b.diff = h - (f || h);
+      var k = Number(new Date);
+      b.diff = k - (f || k);
       b.prev = f;
-      f = b.curr = h;
+      f = b.curr = k;
       g[0] = ja(g[0]);
       "string" != typeof g[0] && g.unshift("%O");
-      var k = 0;
+      var h = 0;
       g[0] = g[0].replace(/%([a-zA-Z%]+)/g, (l, n) => {
         if ("%%" == l) {
           return l;
         }
-        k++;
+        h++;
         if (n = c[n]) {
-          l = n.call(b, g[k]), g.splice(k, 1), k--;
+          l = n.call(b, g[h]), g.splice(h, 1), h--;
         }
         return l;
       });
@@ -336,14 +336,14 @@ function K(a, b) {
     throw new TypeError("arg must be an array of [ee, events...] arrays");
   }
   for (var f = [], g = 0; g < a.length; g++) {
-    var h = a[g];
-    if (!Array.isArray(h) || 2 > h.length) {
+    var k = a[g];
+    if (!Array.isArray(k) || 2 > k.length) {
       throw new TypeError("each array member must be [ee, events...]");
     }
-    for (var k = h[0], l = 1; l < h.length; l++) {
-      var n = h[l], t = ya(n, c);
-      k.on(n, t);
-      f.push({A:k, event:n, B:t});
+    for (var h = k[0], l = 1; l < k.length; l++) {
+      var n = k[l], t = ya(n, c);
+      h.on(n, t);
+      f.push({A:h, event:n, B:t});
     }
   }
   e.cancel = d;
@@ -369,15 +369,15 @@ function L(a, b) {
   !1 !== c ? setImmediate(b, null, a) : (c = a.__onFinished, c && c.s || (c = a.__onFinished = za(a), Aa(a, c)), c.s.push(b));
 }
 function Aa(a, b) {
-  function c(h) {
+  function c(k) {
     g.cancel();
     e.cancel();
     f = !0;
-    b(h);
+    b(k);
   }
-  function d(h) {
+  function d(k) {
     a.removeListener("socket", d);
-    f || g === e && (e = K([[h, "error", "close"]], c));
+    f || g === e && (e = K([[k, "error", "close"]], c));
   }
   var e, f = !1;
   var g = e = K([[a, "end", "finish"]], c);
@@ -467,8 +467,8 @@ function Ja() {
       for (let e = 0; e < d.length; e++) {
         const f = d[e];
         if (O[f]) {
-          const g = a.indexOf(N[O[f]].source), h = a.indexOf(c.source);
-          if ("application/octet-stream" != O[f] && (g > h || g == h && "application/" == O[f].substr(0, 12))) {
+          const g = a.indexOf(N[O[f]].source), k = a.indexOf(c.source);
+          if ("application/octet-stream" != O[f] && (g > k || g == k && "application/" == O[f].substr(0, 12))) {
             continue;
           }
         }
@@ -870,9 +870,9 @@ class ob {
     let f = d.getHeader("Set-Cookie") || [];
     "string" == typeof f && (f = [f]);
     var g = e.protocol;
-    const h = e.connection.encrypted;
-    g = void 0 !== this.secure ? !!this.secure : "https" == g || h;
-    const {signed:k = !!this.keys, ...l} = c;
+    const k = e.connection.encrypted;
+    g = void 0 !== this.secure ? !!this.secure : "https" == g || k;
+    const {signed:h = !!this.keys, ...l} = c;
     a = new nb(a, b, l);
     if (!g && c.secure) {
       throw Error("Cannot send secure cookie over unencrypted connection");
@@ -880,7 +880,7 @@ class ob {
     a.secure = g;
     "secure" in c || (a.secure = g);
     pb(f, a);
-    if (c && k) {
+    if (c && h) {
       if (!this.keys) {
         throw Error(".keys required for signed cookies");
       }
@@ -933,10 +933,10 @@ function sb(a, b) {
   }
   const d = b.map((e, f) => {
     {
-      let h = {c:-1, q:0, g:0};
-      for (let k = 0; k < c.length; k++) {
+      let k = {c:-1, q:0, g:0};
+      for (let h = 0; h < c.length; h++) {
         a: {
-          var g = c[k];
+          var g = c[h];
           let l = 0;
           if (g.charset.toLowerCase() === e.toLowerCase()) {
             l |= 1;
@@ -948,9 +948,9 @@ function sb(a, b) {
           }
           g = {h:f, g:l, c:g.h, q:g.q};
         }
-        g && 0 > (h.g - g.g || h.q - g.q || h.c - g.c) && (h = g);
+        g && 0 > (k.g - g.g || k.q - g.q || k.c - g.c) && (k = g);
       }
-      e = h;
+      e = k;
     }
     return e;
   });
@@ -972,18 +972,18 @@ function xb(a) {
     var f = d;
     var g = wb.exec(a[d].trim());
     if (g) {
-      var h = g[1], k = 1;
+      var k = g[1], h = 1;
       if (g[2]) {
         g = g[2].split(";");
         for (var l = 0; l < g.length; l++) {
           var n = g[l].trim().split("=");
           if ("q" == n[0]) {
-            k = parseFloat(n[1]);
+            h = parseFloat(n[1]);
             break;
           }
         }
       }
-      f = {encoding:h, q:k, h:f};
+      f = {encoding:k, q:h, h:f};
     } else {
       f = null;
     }
@@ -1010,9 +1010,9 @@ function zb(a, b) {
     return c.filter(Ab).sort(Bb).map(Cb);
   }
   var d = b.map(function(e, f) {
-    for (var g = {c:-1, q:0, g:0}, h = 0; h < c.length; h++) {
-      var k = yb(e, c[h], f);
-      k && 0 > (g.g - k.g || g.q - k.q || g.c - k.c) && (g = k);
+    for (var g = {c:-1, q:0, g:0}, k = 0; k < c.length; k++) {
+      var h = yb(e, c[k], f);
+      h && 0 > (g.g - h.g || g.q - h.q || g.c - h.c) && (g = h);
     }
     return g;
   });
@@ -1051,8 +1051,8 @@ function Fb(a, b) {
   if (c[3]) {
     c = c[3].split(";");
     for (var g = 0; g < c.length; g++) {
-      var h = c[g].split("=");
-      "q" == h[0] && (f = parseFloat(h[1]));
+      var k = c[g].split("=");
+      "q" == k[0] && (f = parseFloat(k[1]));
     }
   }
   return {prefix:a, H:d, q:f, h:b, m:e};
@@ -1063,34 +1063,34 @@ function Gb(a, b) {
     return c.filter(Hb).sort(Ib).map(Jb);
   }
   var d = b.map(function(e, f) {
-    for (var g = {c:-1, q:0, g:0}, h = 0; h < c.length; h++) {
+    for (var g = {c:-1, q:0, g:0}, k = 0; k < c.length; k++) {
       a: {
-        var k = c[h];
+        var h = c[k];
         var l = f, n = Fb(e, void 0);
         if (n) {
           var t = 0;
-          if (k.m.toLowerCase() === n.m.toLowerCase()) {
+          if (h.m.toLowerCase() === n.m.toLowerCase()) {
             t |= 4;
           } else {
-            if (k.prefix.toLowerCase() === n.m.toLowerCase()) {
+            if (h.prefix.toLowerCase() === n.m.toLowerCase()) {
               t |= 2;
             } else {
-              if (k.m.toLowerCase() === n.prefix.toLowerCase()) {
+              if (h.m.toLowerCase() === n.prefix.toLowerCase()) {
                 t |= 1;
               } else {
-                if ("*" !== k.m) {
-                  k = null;
+                if ("*" !== h.m) {
+                  h = null;
                   break a;
                 }
               }
             }
           }
-          k = {h:l, c:k.h, q:k.q, g:t};
+          h = {h:l, c:h.h, q:h.q, g:t};
         } else {
-          k = null;
+          h = null;
         }
       }
-      k && 0 > (g.g - k.g || g.q - k.q || g.c - k.c) && (g = k);
+      h && 0 > (g.g - h.g || g.q - h.q || g.c - h.c) && (g = h);
     }
     return g;
   });
@@ -1130,23 +1130,23 @@ function Nb(a, b) {
   var d = 1, e = c[2], f = c[1];
   if (c[3]) {
     c = c[3].split(";");
-    for (var g = 1, h = 0; g < c.length; g++) {
-      0 == Mb(c[h]) % 2 ? c[++h] = c[g] : c[h] += ";" + c[g];
+    for (var g = 1, k = 0; g < c.length; g++) {
+      0 == Mb(c[k]) % 2 ? c[++k] = c[g] : c[k] += ";" + c[g];
     }
-    c.length = h + 1;
+    c.length = k + 1;
     for (g = 0; g < c.length; g++) {
       c[g] = c[g].trim();
     }
     c = c.map(Ob);
     for (g = 0; g < c.length; g++) {
-      var k = c[g];
-      h = k[0].toLowerCase();
-      k = (k = k[1]) && '"' === k[0] && '"' === k[k.length - 1] ? k.substr(1, k.length - 2) : k;
-      if ("q" === h) {
-        d = parseFloat(k);
+      var h = c[g];
+      k = h[0].toLowerCase();
+      h = (h = h[1]) && '"' === h[0] && '"' === h[h.length - 1] ? h.substr(1, h.length - 2) : h;
+      if ("q" === k) {
+        d = parseFloat(h);
         break;
       }
-      a[h] = k;
+      a[k] = h;
     }
   }
   return {type:f, v:e, u:a, q:d, h:b};
@@ -1189,9 +1189,9 @@ function Qb(a, b) {
     return c.filter(Rb).sort(Sb).map(Tb);
   }
   var d = b.map(function(e, f) {
-    for (var g = {c:-1, q:0, g:0}, h = 0; h < c.length; h++) {
-      var k = Pb(e, c[h], f);
-      k && 0 > (g.g - k.g || g.q - k.q || g.c - k.c) && (g = k);
+    for (var g = {c:-1, q:0, g:0}, k = 0; k < c.length; k++) {
+      var h = Pb(e, c[k], f);
+      h && 0 > (g.g - h.g || g.q - h.q || g.c - h.c) && (g = h);
     }
     return g;
   });
@@ -1332,43 +1332,44 @@ function Xb(a) {
  MIT Licensed
 */
 function S(...a) {
-  let b = 500, c = {};
-  for (var d = 0; d < a.length; d++) {
-    var e = a[d];
-    if (e instanceof Error) {
-      var f = e;
-      b = f.status || f.statusCode || b;
+  let b, c, d = 500, e = {};
+  for (let f = 0; f < a.length; f++) {
+    let g = a[f];
+    if (g instanceof Error) {
+      b = g, d = b.status || b.statusCode || d;
     } else {
-      switch(typeof e) {
+      switch(typeof g) {
         case "string":
-          var g = e;
+          c = g;
           break;
         case "number":
-          b = e;
-          0 !== d && process.emitWarning("non-first-argument status code; replace with createError(" + e + ", ...)", "DeprecationWarning");
+          d = g;
+          0 !== f && process.emitWarning("non-first-argument status code; replace with createError(" + g + ", ...)", "DeprecationWarning");
           break;
         case "object":
-          c = e;
+          e = g;
       }
     }
   }
-  "number" == typeof b && (400 > b || 600 <= b) && process.emitWarning("non-error status code; use only 4xx or 5xx status codes", "DeprecationWarning");
-  if ("number" != typeof b || !J[b] && (400 > b || 600 <= b)) {
-    b = 500;
+  "number" == typeof d && (400 > d || 600 <= d) && process.emitWarning("non-error status code; use only 4xx or 5xx status codes", "DeprecationWarning");
+  if ("number" != typeof d || !J[d] && (400 > d || 600 <= d)) {
+    d = 500;
   }
-  a = S[b] || S[Number(String(b).charAt(0) + "00")];
-  f || (f = a ? new a(g) : Error(g || J[b]), Error.captureStackTrace(f, S));
-  a && f instanceof a && f.status === b || (f.expose = 500 > b, f.status = f.statusCode = b);
-  for (let h in c) {
-    "status" != h && "statusCode" != h && (f[h] = c[h]);
+  a = S[d] || S[Number(String(d).charAt(0) + "00")];
+  b || (b = a ? new a(c) : Error(c || J[d]), Error.captureStackTrace(b, S));
+  a && b instanceof a && b.status === d || (b.expose = 500 > d, b.status = b.statusCode = d);
+  for (let f in e) {
+    "status" != f && "statusCode" != f && (b[f] = e[f]);
   }
-  return f;
+  return b;
 }
 class Yb extends Error {
   constructor(a) {
     super();
     this.message = a;
     this.statusCode = this.status = null;
+    this.expose = !1;
+    this.headers = null;
   }
   set code(a) {
     this.statusCode = this.status = a;
@@ -1521,20 +1522,20 @@ function jc(a, b) {
     if (!a) {
       return !1;
     }
-    for (var e = !0, f = 0, g = [], h = 0, k = 0, l = d.length; k < l; k++) {
-      switch(d.charCodeAt(k)) {
+    for (var e = !0, f = 0, g = [], k = 0, h = 0, l = d.length; h < l; h++) {
+      switch(d.charCodeAt(h)) {
         case 32:
-          h === f && (h = f = k + 1);
+          k === f && (k = f = h + 1);
           break;
         case 44:
-          g.push(d.substring(h, f));
-          h = f = k + 1;
+          g.push(d.substring(k, f));
+          k = f = h + 1;
           break;
         default:
-          f = k + 1;
+          f = h + 1;
       }
     }
-    g.push(d.substring(h, f));
+    g.push(d.substring(k, f));
     for (d = 0; d < g.length; d++) {
       if (f = g[d], f === a || f === "W/" + a || "W/" + f === a) {
         e = !1;
@@ -1628,10 +1629,10 @@ class lc {
   }
   get URL() {
     if (!this.a) {
-      const a = this.protocol, b = this.host, c = this.originalUrl || "";
+      const a = this.originalUrl || "";
       try {
-        this.a = new cc(`${a}://${b}${c}`);
-      } catch (d) {
+        this.a = new cc(`${this.origin}${a}`);
+      } catch (b) {
         this.a = Object.create(null);
       }
     }
@@ -1774,7 +1775,7 @@ class Y {
       this.app.emit("error", a, this);
       if (!b) {
         var {res:c} = this;
-        "function" == typeof c.getHeaderNames ? c.getHeaderNames().forEach(d => c.removeHeader(d)) : c._headers = {};
+        c.getHeaderNames().forEach(d => c.removeHeader(d));
         this.set(a.headers);
         this.type = "text";
         "ENOENT" == a.code && (a.status = 404);
@@ -2045,21 +2046,21 @@ function nc(a) {
       throw new TypeError("Middleware must be composed of functions!");
     }
   }
-  return function(b, c) {
+  return (b, c) => {
     function d(f) {
       if (f <= e) {
         return Promise.reject(Error("next() called multiple times"));
       }
       e = f;
       let g = a[f];
-      f === a.length && (g = c);
+      f == a.length && (g = c);
       if (!g) {
         return Promise.resolve();
       }
       try {
         return Promise.resolve(g(b, d.bind(null, f + 1)));
-      } catch (h) {
-        return Promise.reject(h);
+      } catch (k) {
+        return Promise.reject(k);
       }
     }
     let e = -1;
@@ -2092,7 +2093,7 @@ async function oc(a, b) {
   c.statusCode = 404;
   L(c, d => a.onerror(d));
   try {
-    return await b(a), await pc(a);
+    return await b(a), pc(a);
   } catch (d) {
     a.onerror(d);
   }

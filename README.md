@@ -33,7 +33,7 @@ npm install @goa/koa
 </tr>
 </table>
 
-This package actually compiles the [Goa Source Code](/idiocc/goa). You can find all the documentation on that package's page.
+This package actually compiles the [Goa Source Code](https://github.com/idiocc/goa). You can find all the documentation on that package's page.
 
 ## Table Of Contents
 
@@ -111,7 +111,7 @@ http://localhost:3000
 
 GNU Affero General Public License v3.0
 
-Original work on the [Koa Web Server](https://github.com/koajs/koa) by its authors under MIT License found in [Goa's Source Code](/idiocc/goa) repository.
+Original work on the [Koa Web Server](https://github.com/koajs/koa) by its authors under MIT License found in [Goa's Source Code](https://github.com/idiocc/goa) repository.
 
 <table>
   <tr>

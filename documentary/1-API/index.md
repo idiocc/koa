@@ -1,6 +1,6 @@
 ## API
 
-The package is available by importing its default function:
+The package is available by importing its default class:
 
 ```js
 import Goa from '@goa/koa'
@@ -8,10 +8,7 @@ import Goa from '@goa/koa'
 
 %~%
 
-```## constructor => Goa
-```
-
-Creates a new app.
+<method level="3" name="Application.constructor">node_modules/@goa/goa/types/Application.xml</method>
 
 <table>
 <tr><th><a href="example/index.js">Source</a></th><th>Output</th></tr>

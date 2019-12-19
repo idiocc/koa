@@ -39,7 +39,7 @@ This package actually compiles the [Goa Source Code](https://github.com/idiocc/g
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`constructor(): Goa`](#constructor-goa)
+  * [`constructor(): Application`](#constructor-application)
 - [Copyright & License](#copyright--license)
 
 <p align="center"><a href="#table-of-contents">
@@ -48,7 +48,7 @@ This package actually compiles the [Goa Source Code](https://github.com/idiocc/g
 
 ## API
 
-The package is available by importing its default function:
+The package is available by importing its default class:
 
 ```js
 import Goa from '@goa/koa'
@@ -58,9 +58,9 @@ import Goa from '@goa/koa'
   <img src="/.documentary/section-breaks/1.svg?sanitize=true">
 </a></p>
 
-## <code><ins>constructor</ins>(): <i>Goa</i></code>
+### <code><ins>constructor</ins>(): <i>Application</i></code>
 
-Creates a new app.
+Creates a new app instance.
 
 <table>
 <tr><th><a href="example/index.js">Source</a></th><th>Output</th></tr>
@@ -95,7 +95,7 @@ http://localhost:3000
   headers: 
    { 'content-type': 'text/plain; charset=utf-8',
      'content-length': '11',
-     date: 'Wed, 18 Dec 2019 18:33:03 GMT',
+     date: 'Thu, 19 Dec 2019 07:28:56 GMT',
      connection: 'close' },
   statusCode: 201,
   statusMessage: 'example' }
@@ -111,7 +111,7 @@ http://localhost:3000
 
 GNU Affero General Public License v3.0
 
-Original work on the [Koa Web Server](https://github.com/koajs/koa) by its authors under MIT License found in [Goa's Source Code](https://github.com/idiocc/goa) repository.
+Original work on the [Koa Web Server](https://github.com/koajs/koa) by its authors under MIT License found in [Goa's Source Code](https://github.com/idiocc/goa/blob/master/COPYING) repository.
 
 <table>
   <tr>

@@ -1,3 +1,9 @@
+## 20 December 2019
+
+### [2.0.2](https://github.com/idiocc/koa/compare/v2.0.1...v2.0.2)
+
+- [fix] Attachment options.
+
 ## 19 December 2019
 
 ### [2.0.1](https://github.com/idiocc/koa/compare/v2.0.0...v2.0.1)

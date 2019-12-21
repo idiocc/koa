@@ -320,8 +320,8 @@ function K(a, b) {
     b.apply(null, arguments);
   }
   function d() {
-    for (var x, M = 0; M < f.length; M++) {
-      x = f[M], x.A.removeListener(x.event, x.B);
+    for (var x, N = 0; N < f.length; N++) {
+      x = f[N], x.A.removeListener(x.event, x.B);
     }
   }
   function e(x) {
@@ -448,21 +448,21 @@ function Fa(a) {
  Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
  https://npmjs.com/package/mime-types
 */
-const N = require("mime-db"), Ga = /^\s*([^;\s]*)(?:;|\s|$)/, Ha = /^text\//i, Ia = Object.create(null), O = Object.create(null);
+const M = require("mime-db"), Ga = /^\s*([^;\s]*)(?:;|\s|$)/, Ha = /^text\//i, Ia = Object.create(null), O = Object.create(null);
 Ja();
 function P(a) {
   return a && "string" == typeof a ? (a = G("x." + a).toLowerCase().substr(1)) ? O[a] || !1 : !1 : !1;
 }
 function Ja() {
   const a = ["nginx", "apache", void 0, "iana"];
-  Object.keys(N).forEach(b => {
-    const c = N[b], d = c.extensions;
+  Object.keys(M).forEach(b => {
+    const c = M[b], d = c.extensions;
     if (d && d.length) {
       Ia[b] = d;
       for (let e = 0; e < d.length; e++) {
         const f = d[e];
         if (O[f]) {
-          const g = a.indexOf(N[O[f]].source), k = a.indexOf(c.source);
+          const g = a.indexOf(M[O[f]].source), k = a.indexOf(c.source);
           if ("application/octet-stream" != O[f] && (g > k || g == k && "application/" == O[f].substr(0, 12))) {
             continue;
           }
@@ -1943,7 +1943,7 @@ class oc {
           if (!b.includes("charset")) {
             var c;
             if (b && "string" == typeof b) {
-              var d = (c = Ga.exec(b)) && N[c[1].toLowerCase()];
+              var d = (c = Ga.exec(b)) && M[c[1].toLowerCase()];
               c = d && d.charset ? d.charset : c && Ha.test(c[1]) ? "UTF-8" : !1;
             } else {
               c = !1;
@@ -2100,16 +2100,18 @@ async function qc(a, b) {
   }
 }
 class sc extends ua {
-  constructor() {
+  constructor(a = {}) {
+    const {proxy:b = !1, subdomainOffset:c = 2, env:d = process.env.NODE_ENV || "development", keys:e, Context:f = Y} = a;
     super();
-    this.silent = this.proxy = !1;
+    this.proxy = b;
+    this.silent = !1;
     this.middleware = [];
-    this.subdomainOffset = 2;
-    this.env = process.env.NODE_ENV || "development";
-    this.context = Object.create(Y.prototype);
+    this.subdomainOffset = c;
+    this.env = d;
+    this.context = Object.create(f.prototype);
     this.request = Object.create(nc.prototype);
     this.response = Object.create(oc.prototype);
-    this.keys = void 0;
+    this.keys = e;
   }
   [p.custom]() {
     return this.inspect();
@@ -2190,7 +2192,7 @@ function rc(a) {
     b.end(d);
   }
 }
-;module.exports = sc;
+;module.exports = {_Goa:sc, _Context:Y};
 
 
 //# sourceMappingURL=koa.js.map

@@ -1,12 +1,19 @@
-const _Koa = require('./koa')
+const { _Goa, _Context } = require('./koa')
 
 /**
  * An application constructor.
- * @type {function(new: Application)}
+ * @type {new (options?: ApplicationOptions) => Application)}
  */
-const Koa = _Koa
+const $Goa = _Goa
 
-module.exports = Koa
+/**
+ * The default context constructor.
+ * @type {new () => Context}
+ */
+const $Context = _Context
+
+module.exports = $Goa
+module.exports.Context = $Context
 
 /* typework */
 /**
@@ -15,6 +22,7 @@ module.exports = Koa
  * @typedef {import('../types/vendor/accepts').Accepts} Accepts
  * @typedef {import('../types/typedefs/application').Middleware} Middleware
  * @typedef {import('../types/typedefs/application').Application} Application
+ * @typedef {import('../types/typedefs/application').ApplicationOptions} ApplicationOptions
  * @typedef {import('../types/typedefs/context').Context} Context
  * @typedef {import('../types/typedefs/request').Request} Request
  * @typedef {import('../types/typedefs/request').ContextDelegatedRequest} ContextDelegatedRequest

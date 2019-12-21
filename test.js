@@ -10,3 +10,7 @@ alamode({
   },
   ignoreNodeModules: false,
 })
+
+/**
+ * @typedef {import('./').Context} Context
+ */

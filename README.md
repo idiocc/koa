@@ -39,7 +39,7 @@ This package actually compiles the [Goa Source Code](https://github.com/idiocc/g
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-  * [`constructor(): Application`](#constructor-application)
+  * [`constructor(options=)`](#constructoroptions-applicationoptions-application)
 - [Copyright & License](#copyright--license)
 
 <p align="center"><a href="#table-of-contents">
@@ -58,9 +58,12 @@ import Goa from '@goa/koa'
   <img src="/.documentary/section-breaks/1.svg?sanitize=true">
 </a></p>
 
-### <code><ins>constructor</ins>(): <i>Application</i></code>
+
+### <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`options=: ApplicationOptions,`<br/></sub><code>): <i>Application</i></code>
 
 Creates a new app instance.
+
+ - <kbd>options</kbd> <em><code><a href="https://github.com/idiocc/goa/wiki/Application#type-applicationoptions" title="Options for the application constructor.">ApplicationOptions</a></code></em> (optional): Options to create an application.
 
 <table>
 <tr><th><a href="example/index.js">Source</a></th><th>Output</th></tr>
@@ -95,7 +98,7 @@ http://localhost:3000
   headers: 
    { 'content-type': 'text/plain; charset=utf-8',
      'content-length': '11',
-     date: 'Thu, 19 Dec 2019 07:28:56 GMT',
+     date: 'Sat, 21 Dec 2019 05:10:34 GMT',
      connection: 'close' },
   statusCode: 201,
   statusMessage: 'example' }

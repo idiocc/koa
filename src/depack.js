@@ -1,3 +1,7 @@
-import Koa from '@goa/goa'
+import Goa from '@goa/goa'
+import Context from '@goa/goa/src/context'
 
-module.exports = Koa
+module.exports = {
+  '_Goa': Goa,
+  '_Context': Context,
+}

@@ -8,7 +8,9 @@ import Goa from '@goa/koa'
 
 %~%
 
-<method level="3" name="Application.constructor">node_modules/@goa/goa/types/Application.xml</method>
+<include-typedefs>@goa/goa</include-typedefs>
+
+<method noArgTypesInToc level="3" name="Application.constructor">node_modules/@goa/goa/types/Application.xml</method>
 
 <table>
 <tr><th><a href="example/index.js">Source</a></th><th>Output</th></tr>

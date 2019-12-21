@@ -1,3 +1,10 @@
+## 21 December 2019
+
+### [2.1.0](https://github.com/idiocc/koa/compare/v2.0.2...v2.1.0)
+
+- [feature] Export _Context_ constructor.
+- [feature] Accept application options.
+
 ## 20 December 2019
 
 ### [2.0.2](https://github.com/idiocc/koa/compare/v2.0.1...v2.0.2)
